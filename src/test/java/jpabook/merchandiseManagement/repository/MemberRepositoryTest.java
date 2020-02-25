@@ -6,12 +6,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.*;
+
 import static org.junit.Assert.*;
 
-@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MemberRepositoryTest {
@@ -19,18 +21,19 @@ public class MemberRepositoryTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
-    public void memberTest() throws Exception {
-        //given
+    @Transactional
+    @Rollback(false)
+    public void testMember(){
+
         Member member = new Member();
-        member.setUsername("sujin");
-    member.setPassword("995");
+        member.setName("sujin");
         Long saveId = memberRepository.save(member);
-        //when
 
-        Member findmember = memberRepository.find(saveId);
-        //then
+        Member findMember = memberRepository.findOne(saveId);
 
-        Assertions.assertThat(findmember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findmember.getUsername()).isEqualTo(member.getUsername());
+        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
+
+        Assertions.assertThat(findMember).isEqualTo(member);
     }
 }
