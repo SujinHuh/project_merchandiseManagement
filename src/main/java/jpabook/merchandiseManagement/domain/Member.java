@@ -21,6 +21,9 @@ public class Member {
 
     private String password;
 
+    @Column(nullable = false, unique = true)//@Valid
+    private String position;
+
 //    @OneToMany(mappedBy = "member")
 //    private List<Order> orders = new ArrayList<>();
 }
