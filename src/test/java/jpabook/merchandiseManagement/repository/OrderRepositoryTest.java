@@ -26,39 +26,39 @@ public class OrderRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @Test
-    public void memberOderTest() throws Exception {
-        //given
-        Member member = createMember();
-
-        Item item = createItem();
-
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.findOne(saveId);
-
-
-        //when
-
-        //then
-
-    }
-
-    private Member createMember() {
-        Member member = new Member();
-        member.setName("SujinJPA");
-        member.setPosition("사장");
-
-        entityManager.persist(member);
-        return member;
-    }
-    private Item createItem() {
-
-        Item item = new Item();
-        item.setName("JPA_BOOk");
-        item.setPrice(9000);
-        item.setStockQuantity(5);
-
-        entityManager.persist(item);
-        return item;
-    }
+//    @Test
+//    public void memberOderTest() throws Exception {
+//        //given
+//        Member member = createMember();
+//
+//        Item item = createItem();
+//
+//        Long saveId = memberRepository.save(member);
+//        Member findMember = memberRepository.findOne(saveId);
+//
+//
+//        //when
+//
+//        //then
+//
+//    }
+//
+//    private Member createMember() {
+//        Member member = new Member();
+//        member.setName("SujinJPA");
+//        member.setPosition("사장");
+//
+//        entityManager.persist(member);
+//        return member;
+//    }
+//    private Item createItem() {
+//
+//        Item item = new Item();
+//        item.setName("JPA_BOOk");
+//        item.setPrice(9000);
+//        item.setStockQuantity(5);
+//
+//        entityManager.persist(item);
+//        return item;
+//    }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+</head>
+<body>
+<form role="form" action="/members/new" th:object="${memberJoinForm}" method="post">
+    <div><label>아이디
+        <input type="text" th:field="*{userId}">
+    </label></div>
+    <div><label>비밀번호
+        <input type="text" th:field="*{password}">
+    </label></div>
+    <div><label>직책
+        <input type="text" th:field="*{position}">
+    </label></div>
+    <button type="submit">저장</button>
+</form>
+
+</body>
+</html>

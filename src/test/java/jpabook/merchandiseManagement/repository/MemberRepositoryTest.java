@@ -29,17 +29,17 @@ public class MemberRepositoryTest {
 
     @Autowired
     EntityManager entityManager;
-
-    @Test
-   // @Rollback(false)
-    public void 회원가입() {
-
-        Member member = new Member();
-        member.setName("강님");
-        member.setPosition("대");
-
-       Long saveId = memberService.join(member);
-        assertEquals(member,memberRepository.findOne(saveId));
+//
+//    @Test
+//   // @Rollback(false)
+//    public void 회원가입() {
+//
+//        Member member = new Member();
+//        member.setName("강님");
+//        member.setPosition("대");
+//
+//       Long saveId = memberService.join(member);
+//        assertEquals(member,memberRepository.findOne(saveId));
 
 
 //        Long saveId = memberRepository.save(member);
@@ -49,7 +49,7 @@ public class MemberRepositoryTest {
 //        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
 //
 //        Assertions.assertThat(findMember).isEqualTo(member);
-    }
+   // }
 
     @Test(expected = AssertionError.class)
     public void 중복회원() throws Exception {
