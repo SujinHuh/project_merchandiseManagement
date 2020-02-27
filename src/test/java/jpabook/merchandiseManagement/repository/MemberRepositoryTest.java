@@ -1,6 +1,7 @@
 package jpabook.merchandiseManagement.repository;
 
 import jpabook.merchandiseManagement.domain.Member;
+import jpabook.merchandiseManagement.service.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,29 +11,61 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import javax.swing.*;
 
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class MemberRepositoryTest {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberService memberService;
+
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Test
-    @Transactional
-    @Rollback(false)
-    public void testMember(){
+   // @Rollback(false)
+    public void 회원가입() {
 
         Member member = new Member();
-        member.setName("Huh");
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.findOne(saveId);
+        member.setName("강님");
+        member.setPosition("대");
 
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
+       Long saveId = memberService.join(member);
+        assertEquals(member,memberRepository.findOne(saveId));
 
-        Assertions.assertThat(findMember).isEqualTo(member);
+
+//        Long saveId = memberRepository.save(member);
+//        Member findMember = memberRepository.findOne(saveId);
+//
+//        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+//        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
+//
+//        Assertions.assertThat(findMember).isEqualTo(member);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void 중복회원() throws Exception {
+        //given
+        Member memberOne = new Member();
+        memberOne.setName("황사장");
+        memberOne.setPosition("사장");
+
+        Member memberTwo = new Member();
+        memberTwo.setName("황사");
+        memberTwo.setPosition("사장");
+
+        memberService.join(memberOne);
+        memberService.join(memberTwo);
+
+        fail("예외 발생");
+
     }
 }
