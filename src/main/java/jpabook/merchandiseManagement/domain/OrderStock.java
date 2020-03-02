@@ -1,12 +1,11 @@
 package jpabook.merchandiseManagement.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -28,7 +27,28 @@ public class OrderStock {
     @JoinColumn(name = "stock_id")
     private Stock stock;
 
-    private Long orderPrice;
+    private int orderPrice;
 
-    private Long count;
+    private int count;
+
+    //생성 메서드
+    public static OrderStock createOrderStock(Stock stock, int orderPrice, int count) {
+
+        OrderStock orderStock = new OrderStock();
+        orderStock.setStock(stock);
+        orderStock.setOrderPrice(orderPrice);
+        orderStock.setCount(count);
+
+        stock.decreaseStockQuantity(count);
+        return orderStock;
+    }
+
+    public void cancel() {
+        getStock().increaseStockQuantity(count);
+    }
+
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
+
 }
