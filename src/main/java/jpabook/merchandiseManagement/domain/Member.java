@@ -20,10 +20,11 @@ public class Member {
 
     private String email;
 
+    private String name;
+
     private String position;
 
-    // 미정
-//    private String password;
+    private String password;
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
