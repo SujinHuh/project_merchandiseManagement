@@ -20,6 +20,7 @@ public class MemberService {
      * 2. 회원 목록 - MemberList (전체 회원 조회)
      * 3. 회원 한명 조회 - MemberFindOne
      * 4. 회원 존재 유뮤 - validateDuplicateMember
+     * 5. 회원 수정
      */
 
     private final MemberRepository memberRepository;
@@ -31,8 +32,8 @@ public class MemberService {
         memberRepository.save(member);
         return member.getId();
     }
-    // 회원 목록
 
+    // 회원 목록
     public List<Member> memberList(Member member) {
         return memberRepository.findAll();
     }
@@ -40,6 +41,12 @@ public class MemberService {
     // 회원 한명 조회
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
+    }
+
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
     }
 
     // 회원 존재 유뮤

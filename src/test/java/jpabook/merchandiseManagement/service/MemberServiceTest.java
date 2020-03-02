@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
+@RunWith(SpringRunner.class)//스프링 테스트 통합
+@SpringBootTest //SpringBoot 띄우고 @Autowired 없으면 실패!!!
+@Transactional // 반복 가능한 테스트 지원, 각각의 테스트를 실행할 때마다 트랜젝션을 시작하고 테스트가 끝나면 트랜젝션을 강제로 롤백 @Rollback(false)
 public class MemberServiceTest {
 
     /**
