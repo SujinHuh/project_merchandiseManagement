@@ -22,8 +22,6 @@ public class Stock {
 
     private int price;
 
-    private int count;
-
     private int stockQuantity;
 
     // 재고 수량 증가

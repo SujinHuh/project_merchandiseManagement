@@ -29,7 +29,7 @@ public class OrderStock {
 
     private int orderPrice;
 
-    private int count;
+    private int count;// 주문 수량
 
     //생성 메서드
     public static OrderStock createOrderStock(Stock stock, int orderPrice, int count) {

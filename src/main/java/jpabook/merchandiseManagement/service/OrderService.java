@@ -24,10 +24,11 @@ public class OrderService {
      * 주문
      */
 
-    public Long order(Long memberId, Long itemId, int count) {
+    @Transactional
+    public Long order(Long memberId, Long stockId, int count) {
 
         Member member = memberRepository.findOne(memberId);
-        Stock stock = stockRepository.findOne(itemId);
+        Stock stock = stockRepository.findOne(stockId);
         /**
          *  여러개 상품 주문.. 생각
         */
@@ -44,9 +45,10 @@ public class OrderService {
 
     // 주문 취소
 
-    public void cancelOrder(Long itemId) {
+    @Transactional
+    public void cancelOrder(Long stockId) {
 
-        Order order = orderRepository.findOne(itemId);
+        Order order = orderRepository.findOne(stockId);
 
         order.cancel();
     }
