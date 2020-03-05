@@ -2,15 +2,16 @@ package jpabook.merchandiseManagement.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.ToString;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
+@Setter @Getter
+@ToString
 public class Member {
 
     @Id
@@ -29,5 +30,7 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
