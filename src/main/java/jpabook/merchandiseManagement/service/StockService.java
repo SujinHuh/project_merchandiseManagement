@@ -27,11 +27,12 @@ public class StockService {
     }
 
     @Transactional
-    public void updateStock(String name, int price, int stockQuantity) {
-        Stock stock = new Stock();
-        stock.setName(name);
-        stock.setPrice(price);
-        stock.setStockQuantity(stockQuantity);
+    public void updateStock(Long stockId,String name, int price, int stockQuantity) {
+        Stock findStock = stockRepository.findOne(stockId);
+
+        findStock.setName(name);
+        findStock.setPrice(price);
+        findStock.setStockQuantity(stockQuantity);
     }
 
     public List<Stock> findAll() {
