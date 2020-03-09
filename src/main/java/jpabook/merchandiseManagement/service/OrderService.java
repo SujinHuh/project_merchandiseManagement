@@ -1,15 +1,14 @@
 package jpabook.merchandiseManagement.service;
 
-import jpabook.merchandiseManagement.domain.Member;
-import jpabook.merchandiseManagement.domain.Order;
-import jpabook.merchandiseManagement.domain.OrderStock;
-import jpabook.merchandiseManagement.domain.Stock;
+import jpabook.merchandiseManagement.domain.*;
 import jpabook.merchandiseManagement.repository.MemberRepository;
 import jpabook.merchandiseManagement.repository.OrderRepository;
 import jpabook.merchandiseManagement.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -31,9 +30,9 @@ public class OrderService {
         Stock stock = stockRepository.findOne(stockId);
         /**
          *  여러개 상품 주문.. 생각
-        */
+         */
         // 주문 상품 생성 -
-        OrderStock orderStock = OrderStock.createOrderStock(stock, stock.getPrice(),count);
+        OrderStock orderStock = OrderStock.createOrderStock(stock, stock.getPrice(), count);
 
         //주문 생성
         Order order = Order.createOrder(member, orderStock);
@@ -52,7 +51,9 @@ public class OrderService {
 
         order.cancel();
     }
-    /**
-     * 주문 검색
-     */
+
+
+    public List<Order> findOrders(OrderSearch orderSearch) {
+       return orderRepository.findAllByCriteria(orderSearch);
+    }
 }

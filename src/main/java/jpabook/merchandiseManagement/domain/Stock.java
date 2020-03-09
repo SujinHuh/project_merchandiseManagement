@@ -30,16 +30,14 @@ public class Stock {
     }
 
     // 재고 수량 감소
-    public int decreaseStockQuantity(int stockQuantity) {
+    public void decreaseStockQuantity(int quantity) {
 
-        int restStock;
-
-        restStock = this.stockQuantity - stockQuantity;
+        int restStock = this.stockQuantity - quantity;
 
         if(restStock < 0) {
             throw  new NotEnoughStockException("재고 수량을 채워주세요");
         }
-        return this.stockQuantity = restStock;
+        this.stockQuantity = restStock;
     }
     // 물품 수정
     private void changeStock (String name, int price, int stockQuantity) {

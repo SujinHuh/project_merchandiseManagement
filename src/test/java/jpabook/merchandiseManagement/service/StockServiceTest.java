@@ -50,7 +50,7 @@ public class StockServiceTest {
         //when
         stockService.save(stock);
 
-        stockService.updateStock("잘하자",10,90);
+//        stockService.updateStock("잘하자",10,90);
         stockService.save(stock);
 
         //then
