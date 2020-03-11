@@ -38,7 +38,7 @@ public class StockController {
 
          stockService.save(stock);
 
-         return "redirect:/";
+         return "redirect:/home";
     }
 
     @GetMapping("/stocks")
