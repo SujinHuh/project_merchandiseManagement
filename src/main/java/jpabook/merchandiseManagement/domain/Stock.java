@@ -45,4 +45,5 @@ public class Stock {
         this.price = price;
         this.stockQuantity = stockQuantity;
     }
+
 }

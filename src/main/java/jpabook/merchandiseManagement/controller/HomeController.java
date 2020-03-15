@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ServerWebExchange;
 
 import java.util.Map;
 
@@ -36,21 +38,19 @@ public class HomeController {
     @RequestMapping("/")
     public String loginHome() {
         log.info("login controller");
-        return "login";
+        return "login/login";
     }
-    
+
     @RequestMapping("/home")
     public String home() {
         log.info("home controller");
         return "home";
     }
 
-
-
-    @GetMapping("/admin")
+    @GetMapping("/login/admin")
     public String adminPage(@AuthenticationPrincipal User user,
                             Map<String, Object> model) {
         model.put("currentAdminId", user.getUsername());
-        return "adminpage";
+        return "login/adminpage";
     }
 }

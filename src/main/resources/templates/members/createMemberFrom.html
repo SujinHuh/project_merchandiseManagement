@@ -8,7 +8,8 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form role="form" action="/members/new" th:object="${memberFrom}" method="post">
+<!--    <form role="form" action="/members/new" th:object="${memberFrom}" method="post">-->
+        <form role="form" th:action="@{/members/new}" th:object="${memberFrom}" method="post">
         <div class="form-group">
             <label th:for="email">이메일</label>
 
@@ -23,10 +24,10 @@
         </div>
         <div class="form-group">
             <label th:for="position">직책</label>
-            <input type="text" th:field="*{position}" class="form-control" placeholder="거리를 입력하세요"></div>
+            <input type="text" th:field="*{position}" class="form-control" placeholder="직책 입력하세요"></div>
         <div class="form-group">
             <label th:for="password">비밀번호</label>
-            <input type="text" th:field="*{password}" class="form-control" placeholder="이메일을 입력하세요"
+            <input type="text" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요"
                    th:class="${#fields.hasErrors('password')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect date</p>
         </div>

@@ -1,9 +1,6 @@
 package jpabook.merchandiseManagement.controller;
 
-import jpabook.merchandiseManagement.domain.Member;
-import jpabook.merchandiseManagement.domain.Order;
-import jpabook.merchandiseManagement.domain.OrderSearch;
-import jpabook.merchandiseManagement.domain.Stock;
+import jpabook.merchandiseManagement.domain.*;
 import jpabook.merchandiseManagement.repository.OrderRepository;
 import jpabook.merchandiseManagement.service.MemberService;
 import jpabook.merchandiseManagement.service.OrderService;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -38,9 +36,9 @@ public class OrderController {
     @PostMapping("/order")
     public String orders(@RequestParam("memberId") Long memberId,
                          @RequestParam("stockId") Long stockId,
-                         @RequestParam("count") int count){
+                         @RequestParam("count") int count) {
 
-        orderService.order(memberId,stockId,count);
+        orderService.order(memberId, stockId, count);
         return "redirect:/orders";
     }
 
@@ -48,10 +46,10 @@ public class OrderController {
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
 
         List<Order> orders = orderService.findOrders(orderSearch);
-        model.addAttribute("orders",orders);
+        model.addAttribute("orders", orders);
 
-        return "order/orderList";
-    }
+        return"order/orderList";
+}
 
     @PostMapping("/orders/{orderId}/cancel")
     public String cancelOrder(@PathVariable("orderId") Long orderId) {

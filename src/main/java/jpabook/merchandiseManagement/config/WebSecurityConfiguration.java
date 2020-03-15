@@ -30,31 +30,28 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers(HttpMethod.GET,"templates/**").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/home")
-                .permitAll()
-                .and()
+                    .antMatchers("/**").permitAll()
+                    .antMatchers(HttpMethod.GET, "templates/**").permitAll()
+                    .antMatchers("/admin").hasRole("ADMIN")
+                    .anyRequest().authenticated()
+                    .and()
 
                 .formLogin()
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .loginPage("/login")
-                .permitAll()
-                .and()
+                    .defaultSuccessUrl("/home")
+                    .permitAll()
+//                    .failureUrl("/loginError")
+                    .and()
 
-                .logout();
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/")
-//                .invalidateHttpSession(false)
-//                .deleteCookies("COOKIE_NAME")
-//                .and()
-//                .httpBasic();
+                .formLogin()
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .loginPage("/login")
 
+                    .permitAll()
+                    .and()
+
+                .logout()
+                    .permitAll();
     }
 
     @Override

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/header :: header">
     <title>sinUp Congratulations!!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,7 +7,11 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <div class="jumbotron"><h1>sinUp Congratulations!!</h1>
+    <div class="jumbotron">
+        <p>
+            <span sec:authentication="name"></span>님 환영합니다~
+        </p>
+        <h1>sinUp Congratulations!!</h1>
             <p class="lead"></p>
             <a class="btn btn-lg btn-primary" href="/home">메뉴 이동</a>
 

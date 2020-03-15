@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -30,6 +32,7 @@ public class OrderStock {
     private int orderPrice;
 
     private int count;// 주문 수량
+
 
     //생성 메서드
     public static OrderStock createOrderStock(Stock stock, int orderPrice, int count) {
