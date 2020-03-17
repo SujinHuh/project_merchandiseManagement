@@ -33,12 +33,10 @@ public class MemberController {
         if(result.hasErrors()) {
             return "members/createMemberFrom";
         }
-//        Member member = new Member(form.getEmail(),form.getName(),form.getPosition());
         Member member = new Member();
         member.setEmail(form.getEmail());
         member.setName(form.getName());
         member.setPosition(form.getPosition());
-//        member.setPassword(form.getPassword());
 
         member.setPassword(passwordEncoder.encode(form.getPassword()));
         memberService.join(member);

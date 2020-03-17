@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,16 +24,13 @@ public class Board {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column
     private String title;
 
-    @Column
+    @Type(type = "text")
     private String content;
 
-    @Column
     private LocalDateTime createdDate;
 
-    @Column
     private LocalDateTime updatedDate;
 
     @Builder

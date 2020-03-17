@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div class="jumbotron"><h1>게시글 등록</h1>
+        <h1 th:text="${board?.id} ? '게시글 상세' : '게시글 등록'"></h1>
+    </div>
+    <br/>
+    <input id="board_idx" type="hidden" th:value="${board?.id}" />
+    <input id="board_create_date" type="hidden" th:value="${board?.createdDate}" />
+        <table class="table">
+            <tr>
+                <th style="padding:13px 0 0 15px;">생성 날짜</th>
+                <td>
+                    <input type="text" class="form-control input-sm"
+                           readonly th:value="${board?.createdDate} ?
+                                                ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')} : ${board?.createdDate}" />
+                </td>
+            </tr>
+            <tr>
+                <th style="padding:13px 0 0 15px;">제목</th>
+                <td>
+                    <input id="board_title" type="text" class="form-control input-sm" th:value="${board?.title}" />
+                </td>
+            </tr>
+            <tr>
+                <th style="padding:13px 0 0 15px;">내용</th>
+                <td>
+                    <textarea id="board_content" class="form-control input-sm"
+                              maxlength="140" rows="70" style="height: 200px;" th:text="${board?.content}" ></textarea>
+                    <span class="help-block"></span>
+                </td>
+            </tr>
+        </table>
+
+
+        <div th:replace="fragments/footer :: footer"/>
+    </div>
+</div>
+</body>
+</html>

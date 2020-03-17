@@ -17,6 +17,7 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
 	@Bean
 	public CommandLineRunner runner(BoardRepository boardRepository) throws Exception {
 		return (args) -> {
@@ -28,5 +29,5 @@ public class Application {
 							.updatedDate(LocalDateTime.now()).build()));
 		};
 	}
-
 }
+
