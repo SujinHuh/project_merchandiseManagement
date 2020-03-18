@@ -4,6 +4,7 @@ import jpabook.merchandiseManagement.controller.BoardFrom;
 import jpabook.merchandiseManagement.domain.Board;
 import jpabook.merchandiseManagement.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,4 +41,9 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    //삭제
+    @Transactional
+    public void deleteBoard(Long id) {
+        boardRepository.deleteById(id);
+    }
 }

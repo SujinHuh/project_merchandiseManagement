@@ -49,11 +49,11 @@
 
                 <li th:style="${boardList.first} ? 'display:none'"><a href="/board/list?page=1">&laquo;</a></li>
                 <li th:style="${boardList.first} ? 'display:none'">
-                    <a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a>
+                    <a th:href="@{/board/boardList(page=${boardList.number})}">&lsaquo;</a>
                 </li>
                 <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}"
                     th:class="(${page} == ${boardList.number} + 1) ? 'active'">
-                    <a th:href="@{/board/list(page=${page})}" th:text="${page}">
+                    <a th:href="@{/board/boardList(page=${page})}" th:text="${page}">
                         <span class="sr-only"></span>
                     </a>
                 </li>

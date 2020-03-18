@@ -34,11 +34,9 @@ public class BoardController {
     /*
      * 게시글 상세 및 등록 폼 호출
      */
-    @GetMapping("/boardForm/new")
-    public String createFrom(Long id, Model model) {
-
-        model.addAttribute("boardForm",new BoardFrom());
-//        model.addAttribute("board", boardService.findBoardById(id));
+    @GetMapping({"","/","/boardForm/new"})
+    public String board(@RequestParam(value = "id", defaultValue = "0") Long id, Model model) {
+        model.addAttribute("board", boardService.findBoardById(id));
         return "board/boardForm";
     }
 
@@ -46,18 +44,42 @@ public class BoardController {
      * 게시글 생성
      */
     @PostMapping("/boardForm/new")
-    public ResponseEntity<?> create(@RequestBody BoardFrom boardFrom) {
+    public ResponseEntity<?> create(@RequestBody Board board) {
 
-       Board board = new Board();
-       board.setTitle(boardFrom.getTitle());
-       board.setContent(boardFrom.getContent());
-       board.setCreatedDate(LocalDateTime.now());
-       board.setUpdatedDate(LocalDateTime.now());
+//       Board board = new Board();
+//       board.setTitle(boardFrom.getTitle());
+//       board.setContent(boardFrom.getContent());
+//       board.setCreatedDate(LocalDateTime.now());
+//       board.setUpdatedDate(LocalDateTime.now());
 
+        board.setCreatedDate(LocalDateTime.now());
+        board.setUpdatedDate(LocalDateTime.now());
         boardService.registerBoard(board);
 
         return new ResponseEntity<>("{}", HttpStatus.CREATED);
     }
+    /*
+     * 게시글 수정
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @RequestBody Board board) {
+        Board updateBoard = boardService.findBoardById(id);
+        updateBoard.setTitle(board.getTitle());
+        updateBoard.setContent(board.getContent());
+        updateBoard.setUpdatedDate(LocalDateTime.now());
 
+        boardService.registerBoard(updateBoard);
+
+        return new ResponseEntity<>("{}", HttpStatus.OK);
+    }
+
+    /*
+     * 게시글 삭제
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBoard(@PathVariable("id") Long id) {
+        boardService.deleteBoard(id);
+        return new ResponseEntity<>("{}", HttpStatus.OK);
+    }
 
 }
