@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 public class BoardController {
 
     private final BoardService boardService;
+    private final BoardRepository boardRepository;
 
     /*
      * 게시글 목록
@@ -44,7 +45,7 @@ public class BoardController {
      * 게시글 생성
      */
     @PostMapping("/boardForm/new")
-    public ResponseEntity<?> create(@RequestBody Board board) {
+    public String create(@RequestBody Board board) {
 
 //       Board board = new Board();
 //       board.setTitle(boardFrom.getTitle());
@@ -52,11 +53,16 @@ public class BoardController {
 //       board.setCreatedDate(LocalDateTime.now());
 //       board.setUpdatedDate(LocalDateTime.now());
 
+        board.setId(board.getId());
+        board.setTitle(board.getTitle());
+        board.setContent(board.getContent());
         board.setCreatedDate(LocalDateTime.now());
         board.setUpdatedDate(LocalDateTime.now());
+
         boardService.registerBoard(board);
 
-        return new ResponseEntity<>("{}", HttpStatus.CREATED);
+        return "redirect:/broad/broadList";
+//        return new ResponseEntity<>("{}", HttpStatus.CREATED);
     }
     /*
      * 게시글 수정

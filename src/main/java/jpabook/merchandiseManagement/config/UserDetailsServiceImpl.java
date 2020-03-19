@@ -3,6 +3,7 @@ package jpabook.merchandiseManagement.config;
 import jpabook.merchandiseManagement.domain.Member;
 import jpabook.merchandiseManagement.domain.Role;
 import jpabook.merchandiseManagement.repository.MemberRepository;
+import jpabook.merchandiseManagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,8 +22,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
+//    private final UserRepository userRepository;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+//        Member member = userRepository.findByEmail(email)
+//                .orElseThrow(() -> new UsernameNotFoundException(email));
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(email));
 

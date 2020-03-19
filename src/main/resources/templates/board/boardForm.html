@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
 <head th:replace="fragments/header :: header">
     <title>Hello</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,11 +10,11 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <div class="jumbotron"><h1>게시글 등록</h1>
+    <div class="jumbotron"><h1></h1>
         <h1 th:text="${board?.id} ? '게시글 상세' : '게시글 등록'"></h1>
     </div>
     <br/>
-    <input id="board_idx" type="hidden" th:value="${board?.id}" />
+    <input id="board_id" type="hidden" th:value="${board?.id}" />
     <input id="board_create_date" type="hidden" th:value="${board?.createdDate}" />
         <table class="table">
             <tr>
@@ -38,6 +41,21 @@
             </tr>
         </table>
 
+
+            <!-- 목록으로 -->
+            <div class="border-right">
+<!--                <a href="/board/broadList" class="btn btn-success">목록으로</a>-->
+                <a class="btn btn-success" href="/board/boardList">목록 으로</a></p>
+            </div>
+
+            <!-- 저장/수정/삭제 버튼 -->
+            <div class="border-left">
+                <button type="submit" class="btn btn-primary">Submit</button>
+<!--                <button th:if="!${board?.id}" type="button" class="btn btn-primary" id="insert">저장</button>-->
+<!--                <button th:if="${board?.id}" type="button" class="btn btn-info" id="update">수정</button>-->
+<!--                <button th:if="${board?.id}" type="button" class="btn btn-danger" id="delete">삭제</button>-->
+            </div>
+        </div>
 
         <div th:replace="fragments/footer :: footer"/>
     </div>

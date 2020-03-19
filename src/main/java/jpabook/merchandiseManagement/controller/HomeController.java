@@ -23,11 +23,11 @@ public class HomeController {
 //        return "home";
 //    }
 //
-//    @GetMapping("/login")
-//    public String login(){
-//        log.info("home controller");
-//        return "home";
-//    }
+    @GetMapping("/login")
+    public String login(){
+        log.info("home controller");
+        return "/login/login";
+    }
 //    @RequestMapping("/")
 //    public String home() {
 //        log.info("home controller");
@@ -38,7 +38,7 @@ public class HomeController {
     @RequestMapping("/")
     public String loginHome() {
         log.info("login controller");
-        return "login/login";
+        return "home";
     }
 
     @RequestMapping("/home")

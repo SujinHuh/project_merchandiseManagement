@@ -33,7 +33,7 @@
                 <tbody>
                 <tr th:each="board : ${boardList}">
                     <td th:text="${board.id}"></td>
-                    <td ><a th:href="'/board?idx='+${board.id}" th:text="${board.title}"></a></td>
+                    <td ><a th:href="'/board?id='+${board.id}" th:text="${board.title}"></a></td>
                     <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:dd')}"></td>
                     <td th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:dd')}"></td>
                 </tr>
@@ -58,10 +58,10 @@
                     </a>
                 </li>
                 <li th:style="${boardList.last} ? 'display:none'">
-                    <a th:href="@{/board/list(page=${boardList.number} + 2)}">&rsaquo;</a>
+                    <a th:href="@{/board/boardList(page=${boardList.number} + 2)}">&rsaquo;</a>
                 </li>
                 <li th:style="${boardList.last} ? 'display:none'">
-                    <a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a>
+                    <a th:href="@{/board/boardList(page=${boardList.totalPages})}">&raquo;</a>
                 </li>
             </ul>
         </nav>

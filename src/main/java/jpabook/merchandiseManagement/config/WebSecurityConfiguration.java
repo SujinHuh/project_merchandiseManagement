@@ -30,26 +30,22 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/**").permitAll()
+                    .antMatchers("/login").permitAll()
+                    .antMatchers("/members/new").permitAll()
                     .antMatchers(HttpMethod.GET, "templates/**").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
 
                 .formLogin()
-                    .defaultSuccessUrl("/home")
-                    .permitAll()
-//                    .failureUrl("/loginError")
-                    .and()
-
-                .formLogin()
                     .usernameParameter("email")
                     .passwordParameter("password")
                     .loginPage("/login")
-
+                    .failureUrl("/loginError")
+                    .defaultSuccessUrl ( "/home" )
                     .permitAll()
                     .and()
-
+                .csrf().disable()
                 .logout()
                     .permitAll();
     }
@@ -61,7 +57,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/**");
+        //web.ignoring().antMatchers("/**");
     }
 
 
