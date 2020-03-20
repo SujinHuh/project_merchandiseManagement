@@ -46,4 +46,9 @@ public class BoardService {
     public void deleteBoard(Long id) {
         boardRepository.deleteById(id);
     }
+
+    @Transactional
+    public Long saveBoard(BoardFrom boardFrom) {
+        return boardRepository.save(boardFrom.toBoard()).getId();
+    }
 }

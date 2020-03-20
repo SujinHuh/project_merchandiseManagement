@@ -20,17 +20,17 @@ public class BoardFrom {
     private LocalDateTime createdDate;
 
     private LocalDateTime updatedDate;
-//
-//    public Board toEntity() {
-//        Board board = Board.builder()
-//                .id(id)
-//                .title(title)
-//                .content(content)
-//                .createdDate(createdDate)
-//                .updatedDate(updatedDate)
-//                .build();
-//        return board;
-//    }
+
+    public Board toBoard() {
+        Board board = Board.builder()
+                .id(id)
+                .title(title)
+                .content(content)
+                .createdDate(createdDate)
+                .updatedDate(updatedDate)
+                .build();
+        return board;
+    }
 
 
     @Builder

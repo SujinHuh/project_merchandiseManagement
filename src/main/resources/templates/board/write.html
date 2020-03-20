@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    } </style>
+<body>
+<div class="container">
+
+    <body>
+    <form  action="/board/boardForm/new" method="post">
+        제목 : <input type="text" name="title"> <br>
+        작성자 : <input type="text" name="writer"> <br>
+        <textarea name="content"></textarea><br>
+
+        <input type="submit" value="등록">
+    </form>
+
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>
