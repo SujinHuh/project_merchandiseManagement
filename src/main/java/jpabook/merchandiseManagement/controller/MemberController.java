@@ -33,14 +33,20 @@ public class MemberController {
         if(result.hasErrors()) {
             return "members/createMemberFrom";
         }
-        Member member = new Member();
-        member.setEmail(form.getEmail());
-        member.setName(form.getName());
-        member.setPosition(form.getPosition());
+//        Member member = new Member();
+//        member.setEmail(form.getEmail());
+//        member.setName(form.getName());
+//        member.setPosition(form.getPosition());
+//
+//        member.setPassword(passwordEncoder.encode(form.getPassword()));
+//        memberService.join(member);
+//        return "members/sinUpCongratulations";
 
-        member.setPassword(passwordEncoder.encode(form.getPassword()));
+        Member member = new Member();
+        member.setName(form.getName());
+        member.setEmail(form.getEmail());
         memberService.join(member);
-        return "members/sinUpCongratulations";
+        return "redirect:/";
     }
 
     @GetMapping("/members")

@@ -22,15 +22,15 @@
         <table class="table table-striped"> <thead>
         <tr>
             <th>#</th>
-            <th>직원 이메일</th><th>직원명</th> <th>대표상품 이름</th> <th>대표재고 주문가격</th> <th>대표상품 주문수량</th>
+            <th>회원명</th> <th>대표상품 이름</th> <th>대표상품 주문가격</th> <th>대표상품 주문수량</th>
             <th>상태</th> <th>일시</th> <th></th>
         </tr>
         </thead>
             <tbody>
             <tr th:each="stock : ${orders}">
                 <td th:text="${stock.id}"></td>
-                <td th:text="${stock.member.email}"></td>
                 <td th:text="${stock.member.name}"></td>
+                <td th:text="${stock.orderStocks[0].stock.name}"></td>
                 <td th:text="${stock.orderStocks[0].orderPrice}"></td>
                 <td th:text="${stock.orderStocks[0].count}"></td>
                 <td th:text="${stock.orderStatus}"></td>
