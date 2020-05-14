@@ -33,10 +33,12 @@ git clone  https://github.com/SujinHuh/project_merchandiseManagement.git
 ```
 
 ### 앱 구동
-IntelliJ 임포트
+IntelliJ Import
 
 IntelliJ IDEA 에서 프로젝트를 Import 하는 것입니다.
+
 이 프로젝트는 IntelliJ IDEA IDE 위에서 만들어졌습니다.
+
 Import 후 Application Run 하시면 됩니다.
 
 ### To-Do list
