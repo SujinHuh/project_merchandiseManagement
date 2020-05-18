@@ -7,12 +7,11 @@
 
 TestCode작성방법을 익히며 프로젝트를 만들게 되었습니다.
 
+[물품재고관리 바로가기](http://211.110.229.7:8080/).
 
 ### 개발 환경
  -  개발 Mac / 배포 
  -  JDK 11
- -  Tomcat 7 *centos7 + Tomcat7 + Nnginx*
- -  Jenkins 2.235
  -  IDE :  IntelliJ IDEA
  
 ### 프로젝트 환경설정
